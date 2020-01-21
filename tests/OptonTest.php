@@ -10,6 +10,14 @@ final class OptonOutputTest extends TestCase {
 		'name' => 'Chris',
 		'age' => 40,
 		'profession' => 'Web Developer',
+		'languages' => array(
+			'PHP' => array(
+				'version' => 7
+			),
+			'Javascript' => array(
+				'version' => 8
+			),
+		),
 	);
 	protected $acceptedNames = array(
 		'Iole',
@@ -32,9 +40,17 @@ final class OptonOutputTest extends TestCase {
 		), (object) $this->poolOne);
 	}
 
-	public function testExpectInvalidName(): void {
+	public function testExpectDefaultNameInvoke(): void {
 		$this->expectOutputString(self::DEFAULT_NAME);
 
-		echo (new Opton())->get('name', $this->poolOne, self::DEFAULT_NAME, $this->acceptedNames);
+		echo (new Opton)('name', $this->poolOne, self::DEFAULT_NAME, $this->acceptedNames);
+	}
+
+	public function testExpectSeven(): void {
+		$opton = new Opton();
+
+		$this->expectOutputString('7');
+
+		echo $opton->get('version', $opton->get('PHP', $opton->get('languages', $this->poolOne)));
 	}
 }

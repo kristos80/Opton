@@ -31,8 +31,12 @@ use PetrKnap\Php\Singleton\SingletonInterface;
  * @author Christos Athanasiadis <christos.k.athanasiadis@gmail.com>
  * @license https://www.opensource.org/licenses/mit-license.php
  */
-class Opton implements SingletonInterface {
+final class Opton implements SingletonInterface {
 	use \PetrKnap\Php\Singleton\SingletonTrait;
+
+	public function __invoke($name, $pool = array(), $default = NULL, array $acceptedValues = array()) {
+		return $this->get($name, $pool, $default, $acceptedValues);
+	}
 
 	public function get($name, $pool = array(), $default = NULL, array $acceptedValues = array()) {
 		$configuration = $this->getConfiguration($name, $pool, $default, $acceptedValues);
