@@ -45,7 +45,7 @@ final class Opton implements SingletonInterface {
 		$default = $configuration['default'];
 		$acceptedValues = $configuration['acceptedValues'];
 
-		$option = array_key_exists($name, $pool) ? $pool[$name] : $option;
+		$option = !is_array($name) ? (array_key_exists($name, $pool) ? $pool[$name] : $default) : $default;
 		if (is_array($name)) {
 			$option = $this->searchArrayName($name, $pool) ?: $option;
 		}
