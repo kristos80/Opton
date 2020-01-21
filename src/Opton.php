@@ -69,19 +69,14 @@ class Opton implements SingletonInterface {
 	}
 
 	private function getConfiguration($name, $pool, $default = NULL, array $acceptedValues = array()): array {
-		$nameIsConfiguration = FALSE;
 		if (is_array($name) || is_object($name)) {
 			$configuration = (array) $name;
 			if (isset($configuration['name']) && isset($configuration['pool'])) {
-				$nameIsConfiguration = TRUE;
+				$name = $configuration['name'];
+				$pool = $configuration['pool'];
+				$default = isset($configuration['default']) ? $configuration['default'] : $default;
+				$acceptedValues = isset($configuration['acceptedValues']) ? $configuration['acceptedValues'] : $acceptedValues;
 			}
-		}
-
-		if ($nameIsConfiguration) {
-			$name = $configuration['name'];
-			$pool = $configuration['pool'];
-			$default = isset($configuration['default']) ? $configuration['default'] : $default;
-			$acceptedValues = isset($configuration['acceptedValues']) ? $configuration['acceptedValues'] : $acceptedValues;
 		}
 
 		return array(
