@@ -111,9 +111,7 @@ class Opton implements SingletonInterface {
 	private function searchArrayName($name, $pool) {
 		foreach ($name as $possibleName) {
 			if (array_key_exists($possibleName, $pool)) {
-				if ($pool[$possibleName]) {
-					return $pool[$possibleName];
-				}
+				return $pool[$possibleName];
 			}
 		}
 
