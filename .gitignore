@@ -1,0 +1,6 @@
+# PRODUCTION
+.DS_Store
+composer.lock
+/vendor/
+# LOCAL FILES
+testme.php

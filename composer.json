@@ -1,0 +1,20 @@
+{
+	"name" : "kristos80/opton",
+	"type" : "library",
+	"require" : {
+		"petrknap/php-singleton" : "^1.0"
+	},
+	"license" : "MIT",
+	"authors" : [{
+			"name" : "Christos Athanasiadis",
+			"email" : "christos.k.athanasiadis@gmail.com"
+		}
+	],
+	"minimum-stability" : "stable",
+	"autoload" : {
+		"psr-4" : {
+			"Kristos80\\Opton\\" : "src/"
+		}
+	},
+	"description" : "A simple helper to easily grab an option from any pool of data"
+}
