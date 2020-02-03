@@ -24,15 +24,12 @@ declare(strict_types = 1);
  */
 namespace Kristos80\Opton;
 
-use PetrKnap\Php\Singleton\SingletonInterface;
-
 /**
  *
  * @author Christos Athanasiadis <christos.k.athanasiadis@gmail.com>
  * @license https://www.opensource.org/licenses/mit-license.php
  */
-final class Opton implements SingletonInterface {
-	use \PetrKnap\Php\Singleton\SingletonTrait;
+final class Opton {
 
 	public function __invoke($name, $pool = array(), $default = NULL, array $acceptedValues = array()) {
 		return $this->get($name, $pool, $default, $acceptedValues);

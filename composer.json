@@ -1,9 +1,6 @@
 {
 	"name" : "kristos80/opton",
 	"type" : "library",
-	"require" : {
-		"petrknap/php-singleton" : "^1.0"
-	},
 	"license" : "MIT",
 	"authors" : [{
 			"name" : "Christos Athanasiadis",
@@ -17,7 +14,7 @@
 		}
 	},
 	"description" : "A simple helper to easily grab an option from any pool of data",
-	"require-dev": {
-		"phpunit/phpunit": "^7"
+	"require-dev" : {
+		"phpunit/phpunit" : "^7"
 	}
 }
