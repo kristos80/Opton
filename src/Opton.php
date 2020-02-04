@@ -30,17 +30,22 @@ namespace Kristos80\Opton;
  * @license https://www.opensource.org/licenses/mit-license.php
  */
 final class Opton {
-
+	
+	const CONF_NAME = self::CONF_NAME;
+	const CONF_POOL = self::CONF_POOL;
+	const CONF_DEFAULT = self::CONF_DEFAULT;
+	const CONF_ACCEPTED_VALUES = self::CONF_ACCEPTED_VALUES;
+	
 	public function __invoke($name, $pool = array(), $default = NULL, array $acceptedValues = array()) {
 		return $this->get($name, $pool, $default, $acceptedValues);
 	}
 
 	public function get($name, $pool = array(), $default = NULL, array $acceptedValues = array()) {
 		$configuration = $this->getConfiguration($name, $pool, $default, $acceptedValues);
-		$name = $configuration['name'];
-		$pool = $configuration['pool'];
-		$default = $configuration['default'];
-		$acceptedValues = $configuration['acceptedValues'];
+		$name = $configuration[self::CONF_NAME];
+		$pool = $configuration[self::CONF_POOL];
+		$default = $configuration[self::CONF_DEFAULT];
+		$acceptedValues = $configuration[self::CONF_ACCEPTED_VALUES];
 
 		$option = !is_array($name) ? (array_key_exists($name, $pool) ? $pool[$name] : $default) : $default;
 		if (is_array($name)) {
@@ -69,19 +74,19 @@ final class Opton {
 	private function getConfiguration($name, $pool, $default = NULL, array $acceptedValues = array()): array {
 		if (is_array($name) || is_object($name)) {
 			$configuration = (array) $name;
-			if (isset($configuration['name']) && isset($configuration['pool'])) {
-				$name = $configuration['name'];
-				$pool = $configuration['pool'];
-				$default = isset($configuration['default']) ? $configuration['default'] : $default;
-				$acceptedValues = isset($configuration['acceptedValues']) ? $configuration['acceptedValues'] : $acceptedValues;
+			if (isset($configuration[self::CONF_NAME]) && isset($configuration[self::CONF_POOL])) {
+				$name = $configuration[self::CONF_NAME];
+				$pool = $configuration[self::CONF_POOL];
+				$default = isset($configuration[self::CONF_DEFAULT]) ? $configuration[self::CONF_DEFAULT] : $default;
+				$acceptedValues = isset($configuration[self::CONF_ACCEPTED_VALUES]) ? $configuration[self::CONF_ACCEPTED_VALUES] : $acceptedValues;
 			}
 		}
 
 		return array(
-			'name' => $this->normalizeName($name),
-			'pool' => (array) $pool,
-			'default' => $default,
-			'acceptedValues' => $this->normalizeAcceptedValues($acceptedValues),
+			self::CONF_NAME => $this->normalizeName($name),
+			self::CONF_POOL => (array) $pool,
+			self::CONF_DEFAULT => $default,
+			self::CONF_ACCEPTED_VALUES => $this->normalizeAcceptedValues($acceptedValues),
 		);
 	}
 
