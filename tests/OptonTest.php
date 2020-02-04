@@ -12,7 +12,7 @@ final class OptonOutputTest extends TestCase {
 	
 	protected $poolOne = array(
 		'name' => 'Chris',
-		'age' => 40,
+		'age' => '40',
 		'profession' => 'Web Developer',
 		'languages' => array(
 			'PHP' => array(

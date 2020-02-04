@@ -77,11 +77,10 @@ final class Opton {
 	private function getConfiguration($name, $pool, $default = NULL, array $acceptedValues = array()): array {
 		if (is_array($name) || is_object($name)) {
 			$configuration = (array) $name;
-			if (isset($configuration[self::CONF_NAME]) && isset($configuration[self::CONF_POOL])) {
-				$name = $configuration[self::CONF_NAME];
-				$pool = $configuration[self::CONF_POOL];
-				$default = isset($configuration[self::CONF_DEFAULT]) ? $configuration[self::CONF_DEFAULT] : $default;
-				$acceptedValues = isset($configuration[self::CONF_ACCEPTED_VALUES]) ? $configuration[self::CONF_ACCEPTED_VALUES] : $acceptedValues;
+			if ($name_ = $this->get(self::CONF_NAME, $configuration) && $pool = $this->get(self::CONF_POOL, $configuration)) {
+				$name = $name_;
+				$default = $this->get(self::CONF_DEFAULT, $configuration, $default);
+				$acceptedValues = $this->get(self::CONF_ACCEPTED_VALUES, $configuration, $acceptedValues);
 			}
 		}
 
