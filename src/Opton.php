@@ -30,10 +30,10 @@ namespace Kristos80\Opton;
  * @license https://www.opensource.org/licenses/mit-license.php
  */
 final class Opton {
-	const CONF_NAME = self::CONF_NAME;
-	const CONF_POOL = self::CONF_POOL;
-	const CONF_DEFAULT = self::CONF_DEFAULT;
-	const CONF_ACCEPTED_VALUES = self::CONF_ACCEPTED_VALUES;
+	const CONF_NAME = 'name';
+	const CONF_POOL = 'pool';
+	const CONF_DEFAULT = 'default';
+	const CONF_ACCEPTED_VALUES = 'acceptedValues';
 
 	public function __invoke($name, $pool = array(), $default = NULL, array $acceptedValues = array()) {
 		return $this->get($name, $pool, $default, $acceptedValues);

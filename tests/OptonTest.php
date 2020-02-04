@@ -7,8 +7,8 @@ use Kristos80\Opton\Opton;
 final class OptonOutputTest extends TestCase {
 	const DEFAULT_NAME = 'Athanasios';
 	const VERSION_INDEX = 'version';
-	const PHP_VER_SEVEN = 7;
-	const JS_VER_EIGHT = 8;
+	const PHP_VER_SEVEN = '7';
+	const JS_VER_EIGHT = '8';
 	
 	protected $poolOne = array(
 		'name' => 'Chris',
@@ -53,7 +53,7 @@ final class OptonOutputTest extends TestCase {
 	public function testExpectSeven(): void {
 		$opton = new Opton();
 
-		$this->expectOutputString(self::PHP_VER_SEVEN,);
+		$this->expectOutputString(self::PHP_VER_SEVEN);
 
 		echo $opton->get(self::VERSION_INDEX, $opton->get('PHP', $opton->get('languages', $this->poolOne)));
 	}
