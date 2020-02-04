@@ -10,3 +10,8 @@
 # Opton
 
 WIP (Work In Progress)
+
+## Run test
+```cli
+vendor/bin/phpunit --bootstrap vendor/autoload.php tests/OptonTest
+```
