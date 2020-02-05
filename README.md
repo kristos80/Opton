@@ -25,7 +25,7 @@ WIP (Work In Progress) **DO NOT USE IN PRODUCTION**
  *        	Array of accepted values. It affects even the `default` value
  * @return NULL|mixed
  */
-public static function get($name, $pool = array(), $default = NULL, array $acceptedValues = array()) {
+static function get($name, $pool = array(), $default = NULL, array $acceptedValues = array()) {
 ```
 
 ## Examples:
