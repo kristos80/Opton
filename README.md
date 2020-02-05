@@ -9,7 +9,25 @@
 [![CodeScene System Mastery](https://codescene.io/projects/6894/status-badges/system-mastery)](https://codescene.io/projects/6894)
 # Opton
 
-WIP (Work In Progress)
+WIP (Work In Progress) **DO NOT USE IN PRODUCTION**
+
+Example:
+```PHP
+<?php
+require_once 'vendor/autoload.php';
+use Kristos80\Opton\Opton;
+
+$options = array(
+	'optionName' => 'optionValue',
+);
+$acceptedValues = array(
+	'optionValue',
+);
+echo Opton::get('optionName', $options, NULL, $acceptedValues); // prints 'optionValue'
+echo Opton::get('optionNameNonExistent', $options); // prints `NULL`
+echo Opton::get('optionNameNonExistent', $options, 'defaultValue'); // prints 'defaultValue'
+echo Opton::get('optionNameNonExistent', $options, 'defaultValue', $acceptedValues); // prints `NULL`
+```
 
 ## Run test
 ```cli
