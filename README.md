@@ -23,10 +23,17 @@ $options = array(
 $acceptedValues = array(
 	'optionValue',
 );
-echo Opton::get('optionName', $options, NULL, $acceptedValues); // prints 'optionValue'
-echo Opton::get('optionNameNonExistent', $options); // prints `NULL`
-echo Opton::get('optionNameNonExistent', $options, 'defaultValue'); // prints 'defaultValue'
-echo Opton::get('optionNameNonExistent', $options, 'defaultValue', $acceptedValues); // prints `NULL`
+// prints 'optionValue'
+echo Opton::get('optionName', $options, NULL, $acceptedValues);
+
+// prints `NULL`
+echo Opton::get('optionNameNonExistent', $options);
+
+// prints 'defaultValue'
+echo Opton::get('optionNameNonExistent', $options, 'defaultValue');
+
+// prints `NULL`
+echo Opton::get('optionNameNonExistent', $options, 'defaultValue', $acceptedValues);
 ```
 
 ## Run test
