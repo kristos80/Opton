@@ -17,13 +17,13 @@ WIP (Work In Progress) **DO NOT USE IN PRODUCTION**
  *
  * @param array|object|string $name
  *        	The name of the option/key to be found
- * @param array|object $pool
+ * @param array|object|NULL $pool
  *        	The pool of data to search within
- * @param mixed $default
+ * @param mixed|NULL $default
  *        	Default value if nothing is found
- * @param array $acceptedValues
+ * @param array|object|NULL $acceptedValues
  *        	Array of accepted values. It affects even the `default` value
- * @return NULL|mixed
+ * @return mixed|NULL
  */
 static function get($name, $pool = array(), $default = NULL, array $acceptedValues = array()) {
 ```
