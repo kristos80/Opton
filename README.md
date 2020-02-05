@@ -11,6 +11,23 @@
 
 WIP (Work In Progress) **DO NOT USE IN PRODUCTION**
 
+## Source code
+```PHP
+/**
+ *
+ * @param array|object|string $name
+ *        	The name of the option/key to be found
+ * @param array|object $pool
+ *        	The pool of data to search within
+ * @param mixed $default
+ *        	Default value if nothing is found
+ * @param array $acceptedValues
+ *        	Array of accepted values. It affects even the `default` value
+ * @return NULL|mixed
+ */
+public static function get($name, $pool = array(), $default = NULL, array $acceptedValues = array()) {
+```
+
 ## Examples:
 ```PHP
 <?php
