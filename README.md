@@ -32,14 +32,17 @@ static function get($name, $pool = array(), $default = NULL, array $acceptedValu
 ```PHP
 <?php
 require_once 'vendor/autoload.php';
+
 use Kristos80\Opton\Opton;
 
 $options = array(
 	'optionName' => 'optionValue',
 );
+
 $acceptedValues = array(
 	'optionValue',
 );
+
 // prints 'optionValue'
 echo Opton::get('optionName', $options, NULL, $acceptedValues);
 echo "\r\n";
