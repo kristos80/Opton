@@ -11,7 +11,7 @@
 
 WIP (Work In Progress) **DO NOT USE IN PRODUCTION**
 
-Example:
+## Examples:
 ```PHP
 <?php
 require_once 'vendor/autoload.php';
@@ -62,7 +62,7 @@ echo Opton::get(array(
 echo "\r\n";
 ```
 
-## Run test
+## Run tests
 ```cli
 vendor/bin/phpunit --bootstrap vendor/autoload.php tests/OptonTest
 ```
