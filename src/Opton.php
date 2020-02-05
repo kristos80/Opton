@@ -30,17 +30,40 @@ namespace Kristos80\Opton;
  * @license https://www.opensource.org/licenses/mit-license.php
  */
 final class Opton {
+	/**
+	 *
+	 * @var string CONF_NAME
+	 */
 	const CONF_NAME = 'name';
+
+	/**
+	 *
+	 * @var string CONF_POOL
+	 */
 	const CONF_POOL = 'pool';
+
+	/**
+	 *
+	 * @var string CONF_DEFAULT
+	 */
 	const CONF_DEFAULT = 'default';
+
+	/**
+	 *
+	 * @var string CONF_ACCEPTED_VALUES
+	 */
 	const CONF_ACCEPTED_VALUES = 'acceptedValues';
 
-	public function __invoke($name, $pool = array(), $default = NULL, array $acceptedValues = array()) {
-		return $this->get($name, $pool, $default, $acceptedValues);
-	}
-
-	public function get($name, $pool = array(), $default = NULL, array $acceptedValues = array()) {
-		$configuration = $this->getConfiguration($name, $pool, $default, $acceptedValues);
+	/**
+	 *
+	 * @param array|object|string $name
+	 * @param array $pool
+	 * @param mixed $default
+	 * @param array $acceptedValues
+	 * @return NULL|mixed
+	 */
+	public static function get($name, $pool = array(), $default = NULL, array $acceptedValues = array()) {
+		$configuration = self::getConfiguration($name, $pool, $default, $acceptedValues);
 		$name = $configuration[self::CONF_NAME];
 		$pool = $configuration[self::CONF_POOL];
 		$default = $configuration[self::CONF_DEFAULT];
@@ -48,7 +71,7 @@ final class Opton {
 
 		$option = NULL;
 		if (is_array($name)) {
-			$option = $this->searchArrayName($name, $pool) ?: $option;
+			$option = self::searchArrayName($name, $pool) ?: $option;
 		}
 
 		if (! $option) {
@@ -56,13 +79,13 @@ final class Opton {
 		}
 
 		if (count($acceptedValues)) {
-			$option = $this->validateOption($option, $acceptedValues, $default);
+			$option = self::validateOption($option, $acceptedValues, $default);
 		}
 
 		return $option;
 	}
 
-	private function validateOption($option, $acceptedValues, $default) {
+	private static function validateOption($option, $acceptedValues, $default) {
 		if (! in_array($option, $acceptedValues)) {
 			if (! in_array($default, $acceptedValues)) {
 				$default = NULL;
@@ -74,25 +97,25 @@ final class Opton {
 		return $option;
 	}
 
-	private function getConfiguration($name, $pool, $default = NULL, array $acceptedValues = array()): array {
+	private static function getConfiguration($name, $pool, $default = NULL, array $acceptedValues = array()): array {
 		if (is_array($name) || is_object($name)) {
 			$configuration = (array) $name;
-			if ($name_ = $this->get(self::CONF_NAME, $configuration) && $pool = $this->get(self::CONF_POOL, $configuration)) {
+			if ($name_ = self::get(self::CONF_NAME, $configuration) && $pool = $this->get(self::CONF_POOL, $configuration)) {
 				$name = $name_;
-				$default = $this->get(self::CONF_DEFAULT, $configuration, $default);
-				$acceptedValues = $this->get(self::CONF_ACCEPTED_VALUES, $configuration, $acceptedValues);
+				$default = self::get(self::CONF_DEFAULT, $configuration, $default);
+				$acceptedValues = self::get(self::CONF_ACCEPTED_VALUES, $configuration, $acceptedValues);
 			}
 		}
 
 		return array(
-			self::CONF_NAME => $this->normalizeName($name),
+			self::CONF_NAME => self::normalizeName($name),
 			self::CONF_POOL => (array) $pool,
 			self::CONF_DEFAULT => $default,
-			self::CONF_ACCEPTED_VALUES => $this->normalizeAcceptedValues($acceptedValues),
+			self::CONF_ACCEPTED_VALUES => self::normalizeAcceptedValues($acceptedValues),
 		);
 	}
 
-	private function normalizeName($name) {
+	private static function normalizeName($name) {
 		if (! is_array($name) && ! is_object($name) && ! is_string($name) && ! is_numeric($name)) {
 			$name = (string) serialize($name);
 		}
@@ -104,11 +127,11 @@ final class Opton {
 		return $name;
 	}
 
-	private function normalizeAcceptedValues($acceptedValues) {
+	private static function normalizeAcceptedValues($acceptedValues) {
 		return (is_array($acceptedValues) || is_object($acceptedValues)) ? array_values((array) $acceptedValues) : array();
 	}
 
-	private function searchArrayName($name, $pool) {
+	private static function searchArrayName($name, $pool) {
 		foreach ($name as $possibleName) {
 			if (array_key_exists($possibleName, $pool)) {
 				return $pool[$possibleName];

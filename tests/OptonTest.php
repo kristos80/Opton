@@ -9,7 +9,6 @@ final class OptonOutputTest extends TestCase {
 	const VERSION_INDEX = 'version';
 	const PHP_VER_SEVEN = '7';
 	const JS_VER_EIGHT = '8';
-	
 	protected $poolOne = array(
 		'name' => 'Chris',
 		'age' => '40',
@@ -32,13 +31,13 @@ final class OptonOutputTest extends TestCase {
 	public function testExpectChris(): void {
 		$this->expectOutputString('Chris');
 
-		echo (new Opton())->get('name', $this->poolOne);
+		echo Opton::get('name', $this->poolOne);
 	}
 
 	public function testExpectForty(): void {
 		$this->expectOutputString('40');
 
-		echo (new Opton())->get(array(
+		echo Opton::get(array(
 			'age',
 			'yearsOld',
 		), (object) $this->poolOne);
@@ -47,7 +46,7 @@ final class OptonOutputTest extends TestCase {
 	public function testExpectDefaultNameInvoke(): void {
 		$this->expectOutputString(self::DEFAULT_NAME);
 
-		echo (new Opton)('name', $this->poolOne, self::DEFAULT_NAME, $this->acceptedNames);
+		echo Opton::get('name', $this->poolOne, self::DEFAULT_NAME, $this->acceptedNames);
 	}
 
 	public function testExpectSeven(): void {
@@ -55,6 +54,6 @@ final class OptonOutputTest extends TestCase {
 
 		$this->expectOutputString(self::PHP_VER_SEVEN);
 
-		echo $opton->get(self::VERSION_INDEX, $opton->get('PHP', $opton->get('languages', $this->poolOne)));
+		echo Opton::get(self::VERSION_INDEX, $opton->get('PHP', $opton->get('languages', $this->poolOne)));
 	}
 }
