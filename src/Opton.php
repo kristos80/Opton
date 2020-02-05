@@ -78,7 +78,7 @@ final class Opton {
 			$option = self::searchArrayName($name, $pool) ?: $option;
 		}
 
-		if (! $option) {
+		if (! $option && !is_array($name)) {
 			$option = array_key_exists($name, $pool) ? $pool[$name] : $default;
 		}
 
