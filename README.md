@@ -25,15 +25,41 @@ $acceptedValues = array(
 );
 // prints 'optionValue'
 echo Opton::get('optionName', $options, NULL, $acceptedValues);
+echo "\r\n";
 
 // prints `NULL`
 echo Opton::get('optionNameNonExistent', $options);
+echo "\r\n";
 
 // prints 'defaultValue'
 echo Opton::get('optionNameNonExistent', $options, 'defaultValue');
+echo "\r\n";
 
 // prints `NULL`
 echo Opton::get('optionNameNonExistent', $options, 'defaultValue', $acceptedValues);
+echo "\r\n";
+
+// `name` can be an array 
+// prints 'optionValue'
+echo Opton::get(array(
+	'optionName',
+	'optionNameNonExistent',
+), $options);
+echo "\r\n";
+
+// Use a single configuration array with keys:
+//	`name`
+// 	`pool`
+//	`default`
+//	`acceptedValues`
+//
+// prints 'defaultValue'
+echo Opton::get(array(
+	'name' => 'optionNameNonExistent',
+	'pool' => $options,
+	'default' => 'defaultValue',
+));
+echo "\r\n";
 ```
 
 ## Run test
