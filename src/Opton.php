@@ -58,15 +58,15 @@ final class Opton {
 	 *
 	 * @param array|object|string $name
 	 *        	The name of the option/key to be found
-	 * @param array|object $pool
+	 * @param array|object|NULL $pool
 	 *        	The pool of data to search within
-	 * @param mixed $default
+	 * @param mixed|NULL $default
 	 *        	Default value if nothing is found
-	 * @param array $acceptedValues
+	 * @param array|object|NULL $acceptedValues
 	 *        	Array of accepted values. It affects even the `default` value
-	 * @return NULL|mixed
+	 * @return mixed|NULL
 	 */
-	public static function get($name, $pool = array(), $default = NULL, array $acceptedValues = array()) {
+	static function get($name, $pool = array(), $default = NULL, array $acceptedValues = array()) {
 		$configuration = self::getConfiguration($name, $pool, $default, $acceptedValues);
 		$name = $configuration[self::CONF_NAME];
 		$pool = $configuration[self::CONF_POOL];
@@ -89,7 +89,14 @@ final class Opton {
 		return $option;
 	}
 
-	private static function validateOption($option, $acceptedValues, $default) {
+	/**
+	 *
+	 * @param mixed $option
+	 * @param array $acceptedValues
+	 * @param mixed $default
+	 * @return mixed|NULL
+	 */
+	private static function validateOption($option, array $acceptedValues, $default) {
 		if (! in_array($option, $acceptedValues)) {
 			if (! in_array($default, $acceptedValues)) {
 				$default = NULL;
@@ -101,6 +108,14 @@ final class Opton {
 		return $option;
 	}
 
+	/**
+	 *
+	 * @param array|object|string $name
+	 * @param array|object|NULL $pool
+	 * @param mixed|NULL $default
+	 * @param array|object|NULL $acceptedValues
+	 * @return array
+	 */
 	private static function getConfiguration($name, $pool, $default = NULL, array $acceptedValues = array()): array {
 		if (is_array($name) || is_object($name)) {
 			$configuration = (array) $name;
@@ -119,6 +134,11 @@ final class Opton {
 		);
 	}
 
+	/**
+	 *
+	 * @param array|object|string $name
+	 * @return string|array
+	 */
 	private static function normalizeName($name) {
 		if (! is_array($name) && ! is_object($name) && ! is_string($name) && ! is_numeric($name)) {
 			$name = (string) serialize($name);
@@ -131,10 +151,21 @@ final class Opton {
 		return $name;
 	}
 
+	/**
+	 *
+	 * @param array|object|NULL $acceptedValues
+	 * @return array
+	 */
 	private static function normalizeAcceptedValues($acceptedValues) {
 		return (is_array($acceptedValues) || is_object($acceptedValues)) ? array_values((array) $acceptedValues) : array();
 	}
 
+	/**
+	 *
+	 * @param array $name
+	 * @param array $pool
+	 * @return mixed|NULL
+	 */
 	private static function searchArrayName($name, $pool) {
 		foreach ($name as $possibleName) {
 			if (array_key_exists($possibleName, $pool)) {
