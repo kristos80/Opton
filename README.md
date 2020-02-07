@@ -9,7 +9,7 @@
 [![CodeScene System Mastery](https://codescene.io/projects/6894/status-badges/system-mastery)](https://codescene.io/projects/6894)
 # Opton
 
-WIP (Work In Progress) **DO NOT USE IN PRODUCTION**
+Easily get a value from an array or object without all of those unnecessary `array_key_exists` or `isset` controls.
 
 ## Source code 
 ```PHP
