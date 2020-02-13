@@ -28,7 +28,7 @@ Easily get a value from an array or object without all of those unnecessary `arr
 static function get($name, $pool = array(), $default = NULL, array $acceptedValues = array()) {
 ```
 
-## Examples:
+## Examples
 ```PHP
 <?php
 require_once 'vendor/autoload.php';
