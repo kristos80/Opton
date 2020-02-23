@@ -11,6 +11,11 @@
 
 Easily get a value from an array or object without all of those unnecessary `array_key_exists` or `isset` controls.
 
+## Install (via composer)
+```CLI
+$ composer require kristos80/opton
+```
+
 ## Source code 
 ```PHP
 /**
