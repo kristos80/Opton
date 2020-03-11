@@ -89,5 +89,5 @@ echo "\r\n";
 
 ## Run tests
 ```cli
-vendor/bin/phpunit --bootstrap vendor/autoload.php tests/OptonTest
+vendor/bin/phpunit --bootstrap vendor/autoload.php vendor/kristos80/opton/tests/OptonTest
 ```
