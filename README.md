@@ -7,7 +7,7 @@
 [![Maintainability](https://api.codeclimate.com/v1/badges/b270ce7780ab822b411b/maintainability)](https://codeclimate.com/github/kristos80/Opton/maintainability) 
 [![CodeScene Code Health](https://codescene.io/projects/6894/status-badges/code-health)](https://codescene.io/projects/6894) 
 [![CodeScene System Mastery](https://codescene.io/projects/6894/status-badges/system-mastery)](https://codescene.io/projects/6894)
-![Packagist](https://img.shields.io/packagist/dm/kristos80/opton?style=flat-square)
+![Packagist](https://img.shields.io/packagist/dm/kristos80/opton)
 
 # Opton
 Easily get a value from an array or object without all of those unnecessary `array_key_exists` or `isset` controls.
