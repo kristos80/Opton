@@ -93,6 +93,14 @@ final class Opton {
 		return $option;
 	}
 
+	/**
+	 *
+	 * @param array $notationParts
+	 * @param array|object $pool
+	 * @param mixed|NULL $default
+	 * @param array|object|NULL $acceptedValues
+	 * @return mixed|NULL
+	 */
 	private static function getByNotation(array $notationParts, $pool, $default = NULL, array $acceptedValues = array()) {
 		$notationPartsCounter = 1;
 		$pool_ = self::get($notationParts[0], $pool);
