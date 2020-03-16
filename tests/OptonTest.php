@@ -56,4 +56,13 @@ final class OptonOutputTest extends TestCase {
 
 		echo Opton::get(self::VERSION_INDEX, $opton->get('PHP', $opton->get('languages', $this->poolOne)));
 	}
+	
+	public function testExpectSevenFromNotation(){
+		$this->expectOutputString(self::PHP_VER_SEVEN);
+		
+		$version = self::VERSION_INDEX;
+		
+		echo Opton::get("languages.PHP.$version", $this->poolOne);
+	
+	}
 }
