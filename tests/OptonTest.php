@@ -6,7 +6,7 @@ use Kristos80\Opton\Opton;
 
 final class OptonOutputTest extends TestCase {
 	const DEFAULT_NAME = 'Athanasios';
-	const VERSION_INDEX = 'version';
+	const VERSION_INDEX = 0;
 	const PHP_VER_SEVEN = '7';
 	const JS_VER_EIGHT = '8';
 	protected $poolOne = array(

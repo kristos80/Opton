@@ -79,7 +79,7 @@ final class Opton {
 		}
 
 		if (! $option && ! is_array($name)) {
-			if (count($notationParts = explode('.', $name)) > 1) {
+			if (count($notationParts = explode('.', (string) $name)) > 1) {
 				return self::getByNotation($notationParts, $pool, $default, $acceptedValues);
 			}
 
