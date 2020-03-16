@@ -73,12 +73,16 @@ final class Opton {
 		$default = $configuration[self::CONF_DEFAULT];
 		$acceptedValues = $configuration[self::CONF_ACCEPTED_VALUES];
 
+		if (count($notationParts = explode('.', $name)) > 1) {
+			return self::getByNotation($notationParts, $pool, $default, $acceptedValues);
+		}
+
 		$option = NULL;
 		if (is_array($name)) {
 			$option = self::searchArrayName($name, $pool) ?: $option;
 		}
 
-		if (! $option && !is_array($name)) {
+		if (! $option && ! is_array($name)) {
 			$option = array_key_exists($name, $pool) ? $pool[$name] : $default;
 		}
 
@@ -87,6 +91,18 @@ final class Opton {
 		}
 
 		return $option;
+	}
+
+	private static function getByNotation(array $notationParts, $pool, $default = NULL, array $acceptedValues = array()) {
+		$notationPartsCounter = 1;
+		$pool_ = self::get($notationParts[0], $pool);
+		while ($notationPartsCounter < count($notationParts) - 1 && $pool_) {
+			$pool_ = self::get($notationParts[$notationPartsCounter], $pool_);
+
+			$notationPartsCounter ++;
+		}
+
+		return self::get($notationParts[$notationPartsCounter], $pool_, $default, $acceptedValues);
 	}
 
 	/**
