@@ -16,6 +16,22 @@ Easily get a value from an array or object without all of those unnecessary `arr
 ```CLI
 $ composer require kristos80/opton
 ```
+## Notation syntax allowed as of version 1.1.2
+```PHP
+$dataContainer = array(
+	'container' => (object) array( // Object or array it doesn't matter
+		'nested' => array(
+			'value' => array(
+				'in' => array(
+					'value',
+				),
+			),
+		),
+	),
+);
+
+Opton::get('container.nested.value.in.array', $dataContainer);
+```
 
 ## Source code 
 ```PHP
