@@ -30,7 +30,7 @@ $dataContainer = array(
 	),
 );
 
-Opton::get('container.nested.value.in.array', $dataContainer);
+echo Opton::get('container.nested.value.in', $dataContainer); // Prints `value`
 ```
 
 ## Source code 
